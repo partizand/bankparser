@@ -82,7 +82,8 @@ setup(name='bankparser',
 
       #packages=find_packages('src'),
 
-      packages=['bankparser', 'bankparser.banks', 'bankparser.test'],
+      #packages=['bankparser', 'bankparser.banks', 'bankparser.test'],
+      packages=['bankparser', 'bankparser.banks'],
 
       package_dir={'': 'src'},
 

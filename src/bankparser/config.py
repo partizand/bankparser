@@ -2,6 +2,7 @@ import os.path
 import glob
 import configparser
 import importlib
+import sys
 
 import bankparser
 
@@ -37,14 +38,16 @@ class BankConfig:
         common_ini_file = 'banks.ini'
         inifiles = []
         userpath = os.path.expanduser('~/.bankparser')
-        progpath = os.path.realpath(__file__)
         # common ini file
         inifiles.append(os.path.join(userpath, common_ini_file))
-        inifiles.append(os.path.join(progpath, common_ini_file))
         # current bank ini file
         inifiles.append(os.path.join(userpath, inifile))
-        inifiles.append(os.path.join(progpath, inifile))
-
+        if getattr(sys, 'frozen', False):
+            # we are running in a bundle
+            # In pyInstaller read ini also in current dir
+            progpath = os.path.dirname(sys.executable)
+            inifiles.append(os.path.join(progpath, common_ini_file))
+            inifiles.append(os.path.join(progpath, inifile))
         settings = configparser.ConfigParser()
         settings.optionxform = str
         settings.read(inifiles, encoding='utf-8')
