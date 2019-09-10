@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+# -*- coding: utf-8 -*-
+
+# pyinstaller --noupx --onefile --console --distpath exe -n bankparser "src\bankparser\bankparsercli.py" --upx-dir "..\upx" --hidden-import "bankparser.banks.vtb24" --hidden-import "bankparser.banks.admoney" --hidden-import "bankparser.banks.admoney-xml" --hidden-import "bankparser.banks.adshares"
+
+pyinstaller --noupx --onefile --console --name bankparser src/bankparser/bankparsercli.py --hidden-import "bankparser.banks.vtb24" --hidden-import "bankparser.banks.admoney" --hidden-import "bankparser.banks.admoney-xml" --hidden-import "bankparser.banks.adshares"
